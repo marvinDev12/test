@@ -6,6 +6,8 @@ declare global {
 
 export default function Home() {
   const sendEventToDataLayer = (event: string, payload: object) => {
+    window.parent.postMessage({ type: 'collect', data: { event, ...payload }});
+
     if (typeof window !== 'undefined') {
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({

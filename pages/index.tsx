@@ -6,7 +6,12 @@ declare global {
 
 export default function Home() {
   const sendEventToDataLayer = (event: string, payload: object) => {
-    window.parent.postMessage({ type: 'collect', data: { event, ...payload }});
+
+    console.log(window.parent.postMessage)
+    window.parent.postMessage({
+      type: 'collect',
+      event
+  });
 
     if (typeof window !== 'undefined') {
         window.dataLayer = window.dataLayer || [];
@@ -18,6 +23,7 @@ export default function Home() {
   };
 
   const handleClick = (event: string) => {
+    console.log(event)
     switch (event) {
       case 'calculator_arrive':
         sendEventToDataLayer('calculator_arrive', {

@@ -8,7 +8,8 @@ export default function Home() {
   const sendEventToDataLayer = (event: string, payload: object) => {
     window.parent.postMessage({
         type: 'collect',
-        event
+        event,
+        ...payload
     }, '*');
 
     if (typeof window !== 'undefined') {
